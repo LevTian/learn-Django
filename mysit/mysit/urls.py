@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
 from .views import hello, current_datetime, hours_ahead, display_meta
-
+from books import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^hello/$', hello),
     url(r'^time/$', current_datetime),
     url(r'^time/plus/(\d+)/$', hours_ahead),
     url(r'^meta/$', display_meta),
+    url(r'^search-form/$', views.search_form),
+    url(r'^search/$', views.search),
 ]
