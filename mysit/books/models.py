@@ -24,6 +24,7 @@ class Book(models.Model):
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE) #2.0
     publication_date = models.DateField(blank=True, null=True)
+    num_pages = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.title
