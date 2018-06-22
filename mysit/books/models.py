@@ -23,13 +23,19 @@ class BookManager(models.Manager):
     def title_count(self, keyword):
         return self.filter(title__icontains=keyword).count()    #__
 
+class TyyBookManager(models.Manager):
+    def get_query_set(self):
+        return super(TyyBookManager, self).get_query_set().filter(author='youyu tian')
+
 class Book(models.Model):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE) #2.0
     publication_date = models.DateField(blank=True, null=True)
     num_pages = models.IntegerField(blank=True, null=True)
-    objects = BookManager()
+    #objects = BookManager()
+    objects = models.Manager() #default manager.
+    tyy_objects = TyyBookManager()  #tyy manager.
 
     def __str__(self):
         return self.title
